@@ -60,6 +60,7 @@ def check_phone_bill(S):
         # Посчитаем общее время каждого разговора в секундах
         time = [int(i) for i in row[0].split(':')]
         sec_time = (time[0] * 3600) + (time[1] * 60) + time[2]
+        # Будем делать отдельный словарь для времени звонков - костыль №1
         time_dict.setdefault(row[1], []).append(sec_time)
 
         # Если короче 5 минут (300 секунд)
@@ -76,22 +77,26 @@ def check_phone_bill(S):
         # запихнём всё в словарь {телефон: [стоимость звонка 1, стоимость звонка 2]}
         result_dict.setdefault(row[1], []).append(bill)
 
+    # Будем искать самое длинное время звонков
     if time_dict:
+        # Костыль №2, сам не понимаю что тут происходит
         t = {phone: sum(time) for phone, time in time_dict.items()}
         v_time = list(t.values())
         k_time = list(t.keys())
+        # Нашли ключ от максимального времени
         max_time_phone = k_time[v_time.index(max(v_time))]
 
         if result_dict:
+            # Удаляем его из словаря
             del result_dict[max_time_phone]
 
+        # Складываем стоимость внутри каждого номера
         result_dict = {phone: sum(bill) for phone, bill in result_dict.items()}
 
+        # Складываем стоимость, всех звонков
         for i in result_dict.values():
             total_bill += i
-
         return total_bill
-
     return None
 
 
