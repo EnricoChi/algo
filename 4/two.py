@@ -83,10 +83,12 @@ def check_phone_bill(S):
         max_time_phone = k_time[v_time.index(max(v_time))]
 
         if result_dict:
-            result_dict[max_time_phone] = 0
+            del result_dict[max_time_phone]
+
+        result_dict = {phone: sum(bill) for phone, bill in result_dict.items()}
 
         for i in result_dict.values():
-            total_bill += int(i)
+            total_bill += i
 
         return total_bill
 
