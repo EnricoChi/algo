@@ -12,6 +12,8 @@
 # (при желании можно увеличить размер массива и диапазон чисел в 10/100 раз).
 # При замере производительности рекомендуется не печатать сообщения в консоль.
 
+from collections import Counter
+
 
 def search_lst(lst):
     result_lst = []
@@ -36,8 +38,21 @@ def search_lst(lst):
 '''
 
 
+def counter_lst(lst):
+    result_lst = []
+    search = Counter(lst)
+    for k, v in search.items():
+        if v > 1:
+            result_lst.append(k)
+    return result_lst
 
-# print(search_lst(lst))
+'''
+    Анрил
+    > python -m timeit -n 1 -r 1 -s "from random import randint" "from one import counter_lst" "counter_lst([randint(0, 1000000) for i in range(1000000)])"
+    1 loops, best of 1: 1.81 sec per loop
+'''
+
 # test_lst = [9, 4, 6, 4, 10, 0, 4, 0, 6, 8]
+# print(counter_lst(test_lst))
 # assert search_set(test_lst) == {0, 4, 6}
 
