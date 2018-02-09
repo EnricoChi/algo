@@ -39,9 +39,9 @@ def search_lst(lst):
 
 
 '''
-    Результат в 2 раза быстрее, чем в прошлый раз!
+    Результат почти в 2 раза быстрее, чем в прошлый раз!
     > python -m timeit -n 1 -r 1 -s "from random import randint" "from one import search_lst" "search_lst([randint(0, 100000) for i in range(100000)])"
-    1 loops, best of 1: 40.8 sec per loop
+    1 loops, best of 1: 58.2 sec per loop
     
     А так всёравно грустно, хоть и не так как раньше. Можно это ещё больше оптимизировать?
     > python -m timeit -n 1 -r 1 -s "from random import randint" "from one import search_lst" "search_lst([randint(0, 200000) for i in range(200000)])"
@@ -49,16 +49,6 @@ def search_lst(lst):
 '''
 
 
-def search_set(lst):
-    result_set = set()
-    convert = set(lst)
-    print(convert)
-    for i in range(len(lst)):
-        current = lst.pop()  # O(1)
-        print(current)
-        if current in convert:  # O(1) set
-            result_set.add(current)  # O(1)
-    return result_set
 
 
 # print(search_lst(lst))
