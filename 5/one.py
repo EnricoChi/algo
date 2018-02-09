@@ -45,9 +45,8 @@ def search_lst(lst):
     
     А так всёравно грустно, хоть и не так как раньше. Можно это ещё больше оптимизировать?
     > python -m timeit -n 1 -r 1 -s "from random import randint" "from one import search_lst" "search_lst([randint(0, 200000) for i in range(200000)])"
-    1 loops, best of 1: 174 sec per loop
+    1 loops, best of 1: 234 sec per loop
 '''
-
 
 
 
