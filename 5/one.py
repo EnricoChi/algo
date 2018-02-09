@@ -32,11 +32,10 @@ def search_lst(lst):
         # Будем брать/удалять последний элемент
         current = lst.pop()  # O(1)
         # И проверять, бывает ли он ещё в это списке
-        if current in lst and current not in result_lst:  # O(n) list
+        if current in lst:  # O(n) list
             # Если бывает, то запишем в результат
             result_lst.append(current)  # O(1)
-    # Развернём, т.к. поиск был с конца
-    return result_lst[::-1]
+    return set(result_lst)
 
 
 '''
@@ -55,26 +54,11 @@ def search_set(lst):
     convert = set(lst)
     print(convert)
     for i in range(len(lst)):
-        # Будем брать/удалять последний элемент
         current = lst.pop()  # O(1)
         print(current)
-        # И проверять, бывает ли он ещё в это списке
         if current in convert:  # O(1) set
-            # Если бывает, то запишем в результат
             result_set.add(current)  # O(1)
-    # Развернём, т.к. поиск был с конца
     return result_set
-
-
-'''
-    Результат в 2 раза быстрее, чем в прошлый раз!
-    > python -m timeit -n 1 -r 1 -s "from random import randint" "from one import search_lst" "search_lst([randint(0, 100000) for i in range(100000)])"
-    1 loops, best of 1: 40.8 sec per loop
-
-    А так всёравно грустно, хоть и не так как раньше. Можно это ещё больше оптимизировать?
-    > python -m timeit -n 1 -r 1 -s "from random import randint" "from one import search_lst" "search_lst([randint(0, 200000) for i in range(200000)])"
-    1 loops, best of 1: 174 sec per loop
-'''
 
 
 # print(search_lst(lst))
