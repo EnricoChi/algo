@@ -13,6 +13,7 @@
 # При замере производительности рекомендуется не печатать сообщения в консоль.
 
 from collections import Counter
+from random import randint
 
 
 def search_lst(lst):
@@ -50,9 +51,16 @@ def counter_lst(lst):
     Анрил
     > python -m timeit -n 1 -r 1 -s "from random import randint" "from one import counter_lst" "counter_lst([randint(0, 1000000) for i in range(1000000)])"
     1 loops, best of 1: 1.81 sec per loop
+    
+    > python -m timeit -n 1 -r 1 -s "from random import randint" "from one import counter_lst" "counter_lst([randint(0, 10000000) for i in range(10000000)])" 
+    1 loops, best of 1: 21 sec per loop
 '''
 
-# test_lst = [9, 4, 6, 4, 10, 0, 4, 0, 6, 8]
+
+# test_lst = [randint(0, 1000000) for i in range(1000000)]
 # print(counter_lst(test_lst))
-# assert search_set(test_lst) == {0, 4, 6}
+
+test_lst = [9, 4, 6, 4, 10, 0, 4, 0, 6, 8]
+# assert search_lst(test_lst) == {0, 4, 6}
+assert counter_lst(test_lst) == [4, 6, 0]
 
